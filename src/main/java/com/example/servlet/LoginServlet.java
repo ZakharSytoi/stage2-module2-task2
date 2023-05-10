@@ -22,9 +22,9 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (Users.getInstance().getUsers().contains((String) req.getAttribute("login"))
+        if (Users.getInstance().getUsers().contains((String) req.getParameter("login"))
                 && req.getAttribute("password") != null) {
-            req.getSession().setAttribute("user", req.getAttribute("login"));
+            req.getSession().setAttribute("user", req.getParameter("login"));
             resp.sendRedirect("/user/hello.jsp");
         } else {
             req.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
